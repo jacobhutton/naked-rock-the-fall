@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&amp;family=Figtree:wght@400;500;600;700&amp;display=swap">
+  <style>
+    body { margin: 0; font-family: 'Figtree', system-ui, sans-serif; background: #FBF6EF; color: #3A2E26; }
+    a { color: #C24E12; } a:hover { color: #9E3F0E; }
+    .eb { font-family: 'Figtree', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: #C24E12; margin: 0; }
+    .h2 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 58px; line-height: 1.05; letter-spacing: -0.02em; color: #1F1712; margin: 0; }
+    .h2 em, .h1 em, .h3 em { font-style: italic; font-weight: 500; color: #C24E12; }
+    .h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 28px; line-height: 1.15; color: #1F1712; margin: 0; }
+    .lede { font-size: 21px; line-height: 1.55; color: #5A4A40; margin: 0; }
+    .body { font-size: 18px; line-height: 1.6; color: #5A4A40; margin: 0; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; height: 62px; padding: 0 34px; border-radius: 999px; background: #C24E12; color: #FFFFFF; font-family: 'Figtree', sans-serif; font-weight: 700; font-size: 18px; text-decoration: none; }
+    .btn:hover { background: #9E3F0E; color: #FFFFFF; }
+    .ph { background: repeating-linear-gradient(135deg, #EFE4D6 0 14px, #F5ECE1 14px 28px); color: #8A776A; font-weight: 600; font-size: 16px; display: flex; align-items: center; justify-content: center; text-align: center; }
+  </style>
+</helmet>
+<div style="width: 1440px; height: 3900px; box-sizing: border-box; background: #FBF6EF; display: flex; flex-direction: column; overflow: hidden;">
+
+  <!-- NAV -->
+  <div style="height: 84px; padding: 0 140px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #EDE2D4; flex-shrink: 0;">
+    <div style="font-family: 'Figtree', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: 0.2em; color: #1F1712;">NAKED TRAINING</div>
+    <a href="#pricing" class="btn" style="height: 48px; padding: 0 24px; font-size: 16px;">Join the Challenge</a>
+  </div>
+
+  <!-- HERO -->
+  <div style="padding: 72px 140px 96px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 72px; align-items: center; flex-shrink: 0;">
+    <div style="display: flex; flex-direction: column; gap: 28px;">
+      <div style="align-self: flex-start; padding: 10px 18px; border-radius: 999px; background: #F6E2D3; font-weight: 700; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #9E3F0E;">Rock the Fall · 8-Week Challenge</div>
+      <h1 class="h1" style="font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 92px; line-height: 0.98; letter-spacing: -0.03em; color: #1F1712; margin: 0;">Fall is here. Let's get to <em>work.</em></h1>
+      <p class="lede" style="font-size: 22px; max-width: 540px;">Eight weeks of training with Brooke Ence, a community that shows up with you, and a chance to win $2,000. Finish the year stronger than you started it.</p>
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <a href="#pricing" class="btn">Join the Challenge
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+        <div style="display: flex; align-items: center; gap: 10px; height: 62px; padding: 0 22px; border-radius: 999px; border: 1.5px solid #E3D3C1; font-weight: 600; font-size: 17px; color: #1F1712;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C24E12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16v13H4zM4 11h16M9 3v4M15 3v4"></path></svg>
+          Starts October 5
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; font-size: 17px; color: #5A4A40;">
+        <div style="display: flex;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #E9C9AE; border: 2px solid #FBF6EF;"></div>
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #D9A889; border: 2px solid #FBF6EF; margin-left: -10px;"></div>
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #C28B6B; border: 2px solid #FBF6EF; margin-left: -10px;"></div>
+        </div>
+        Join <strong style="color: #1F1712;">[X,000+] women</strong> who've trained with Brooke
+      </div>
+    </div>
+    <div style="position: relative; height: 680px;">
+      <img src="images/hero.jpg" alt="Brooke Ence stretching on a track" style="width: 100%; height: 680px; object-fit: cover; border-radius: 28px; display: block;">
+      <div style="position: absolute; left: -32px; bottom: 40px; background: #FFFFFF; border-radius: 20px; padding: 18px 22px; box-shadow: 0 18px 40px rgba(31, 23, 18, 0.14); display: flex; flex-direction: column; gap: 4px;">
+        <div style="font-size: 14px; font-weight: 600; color: #8A776A;">Your coach</div>
+        <div style="font-family: 'Fraunces', Georgia, serif; font-size: 24px; font-weight: 600; color: #1F1712;">Brooke Ence</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div style="height: 64px; background: #1F1712; display: flex; align-items: center; gap: 36px; padding: 0 40px; overflow: hidden; white-space: nowrap; flex-shrink: 0; font-weight: 700; font-size: 17px; letter-spacing: 0.08em; text-transform: uppercase; color: #FBF6EF;">
+    <span>5 winners, $2,000 each</span><span style="color: #F08A4B;">✦</span>
+    <span>Starts October 5</span><span style="color: #F08A4B;">✦</span>
+    <span>Train with any program</span><span style="color: #F08A4B;">✦</span>
+    <span>5 winners, $2,000 each</span><span style="color: #F08A4B;">✦</span>
+    <span>Starts October 5</span><span style="color: #F08A4B;">✦</span>
+    <span>Train with any program</span>
+  </div>
+
+  <!-- TRANSFORMATIONS -->
+  <div style="padding: 112px 140px; display: flex; flex-direction: column; gap: 56px; flex-shrink: 0;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center;">
+      <p class="eb">Real results</p>
+      <h2 class="h2">What eight weeks <em>actually</em> looks like.</h2>
+      <p class="lede">Real women. Real programs. Real change.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px;">
+      <div style="background: #FFFFFF; border-radius: 24px; overflow: hidden; border: 1px solid #EDE2D4; display: flex; flex-direction: column;">
+        <img src="images/r1.jpg" alt="Kadee before and after" style="width: 100%; height: 256px; object-fit: cover; display: block;">
+        <div style="padding: 28px; display: flex; flex-direction: column; gap: 16px;">
+          <div style="align-self: flex-start; padding: 6px 12px; border-radius: 8px; background: #F6E2D3; font-size: 14px; font-weight: 700; color: #9E3F0E;">Lost 10 lbs and set new PRs</div>
+          <p style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-size: 21px; line-height: 1.4; color: #1F1712;">"I've tried a million programs, but this was the first one I actually finished. The daily structure took all the guesswork out."</p>
+          <div style="font-weight: 700; font-size: 17px; color: #1F1712;">Kadee Blair</div>
+        </div>
+      </div>
+      <div style="background: #FFFFFF; border-radius: 24px; overflow: hidden; border: 1px solid #EDE2D4; display: flex; flex-direction: column;">
+        <img src="images/r2.jpg" alt="Before and after" style="width: 100%; height: 256px; object-fit: cover; display: block;">
+        <div style="padding: 28px; display: flex; flex-direction: column; gap: 16px;">
+          <div style="align-self: flex-start; padding: 6px 12px; border-radius: 8px; background: #F6E2D3; font-size: 14px; font-weight: 700; color: #9E3F0E;">[Result label]</div>
+          <p style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-size: 21px; line-height: 1.4; color: #1F1712;">"[Quote from this challenger about what changed for her in eight weeks.]"</p>
+          <div style="font-weight: 700; font-size: 17px; color: #1F1712;">Heidi Lloyd</div>
+        </div>
+      </div>
+      <div style="background: #FFFFFF; border-radius: 24px; overflow: hidden; border: 1px solid #EDE2D4; display: flex; flex-direction: column;">
+        <img src="images/r3.jpg" alt="Before and after" style="width: 100%; height: 256px; object-fit: cover; display: block;">
+        <div style="padding: 28px; display: flex; flex-direction: column; gap: 16px;">
+          <div style="align-self: flex-start; padding: 6px 12px; border-radius: 8px; background: #F6E2D3; font-size: 14px; font-weight: 700; color: #9E3F0E;">[Result label]</div>
+          <p style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-size: 21px; line-height: 1.4; color: #1F1712;">"[Quote from this challenger about what changed for her in eight weeks.]"</p>
+          <div style="font-weight: 700; font-size: 17px; color: #1F1712;">Elena R.</div>
+        </div>
+      </div>
+    </div>
+    <p style="margin: 0; text-align: center; font-size: 15px; color: #8A776A;">Individual results vary and depend on consistency with training and nutrition.</p>
+  </div>
+
+  <!-- PROBLEM / PLAN -->
+  <div style="padding: 112px 140px; background: #F4EBDF; display: flex; flex-direction: column; gap: 56px; flex-shrink: 0;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center;">
+      <p class="eb">The truth</p>
+      <h2 class="h2">You don't need more motivation.<br><em>You need a plan.</em></h2>
+      <p class="lede" style="max-width: 720px;">Fall is when routines slip. Back to school, shorter days, and a hundred reasons to skip. Rock the Fall gives you eight weeks of structure, so all you have to do is show up.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; max-width: 1000px; width: 100%; align-self: center;">
+      <div style="padding: 40px; border-radius: 24px; background: #FBF6EF; border: 1px solid #E3D3C1; display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-weight: 700; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A776A;">Without a plan</div>
+        <div style="display: flex; flex-direction: column; gap: 18px; font-size: 19px; color: #6B5B50;">
+          <div style="display: flex; gap: 14px; align-items: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A8968A" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>Start strong, then fall off by October</div>
+          <div style="display: flex; gap: 14px; align-items: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A8968A" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>Guess at workouts and nutrition</div>
+          <div style="display: flex; gap: 14px; align-items: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A8968A" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>Jump from program to program</div>
+          <div style="display: flex; gap: 14px; align-items: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A8968A" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>Drift into the holidays off track</div>
+        </div>
+      </div>
+      <div style="padding: 40px; border-radius: 24px; background: #FFFFFF; border: 2px solid #C24E12; box-shadow: 0 20px 44px rgba(194, 78, 18, 0.12); display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-weight: 700; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: #C24E12;">With the challenge</div>
+        <div style="display: flex; flex-direction: column; gap: 18px; font-size: 19px; color: #1F1712; font-weight: 500;">
+          <div style="display: flex; gap: 14px; align-items: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C24E12" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"></path></svg>A daily training plan to follow</div>
+          <div style="display: flex; gap: 14px; align-items: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C24E12" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"></path></svg>Simple nutrition guidance, no extremes</div>
+          <div style="display: flex; gap: 14px; align-items: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C24E12" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"></path></svg>Short, effective sessions that fit real life</div>
+          <div style="display: flex; gap: 14px; align-items: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C24E12" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"></path></svg>Everything in one app</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEET BROOKE -->
+  <div style="padding: 112px 140px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; align-items: center; flex-grow: 1;">
+    <div class="ph" style="height: 560px; border-radius: 28px;">[Portrait of Brooke, coaching or training]</div>
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <p class="eb">Your coach</p>
+      <h2 class="h2">Train with <em>Brooke Ence.</em></h2>
+      <p class="body" style="font-size: 20px;">[Two or three sentences on Brooke's background: CrossFit Games athlete, years coaching, and what she believes about training women. Confirm the details.]</p>
+      <div style="padding: 28px 32px; border-radius: 20px; background: #F4EBDF; display: flex; flex-direction: column; gap: 12px;">
+        <p style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 24px; line-height: 1.4; color: #1F1712;">"[One or two lines from Brooke on why she built this challenge.]"</p>
+        <div style="font-weight: 700; font-size: 16px; color: #C24E12;">Brooke Ence</div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":3900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
