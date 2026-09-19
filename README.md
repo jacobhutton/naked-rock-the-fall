@@ -10,7 +10,7 @@ Live at `rockthefall.nakedtraining.app` (Vercel).
 | `index.html` | The page. All copy lives here. |
 | `styles.css` | All styling. Design tokens (colors, type, spacing) are at the top. |
 | `main.js` | Behavior. **`CONFIG` at the top is the only part you should need to edit.** |
-| `rules.html` | Official challenge rules. **Draft: needs legal review and the bracketed items filled in.** |
+| `rules.html` | Official challenge rules (sponsor: DBAB LLC). Filled in with Jake on Sep 19, 2026. Not yet reviewed by a lawyer. |
 | `404.html` | Not-found page. |
 | `vercel.json` | Security headers, cache headers, redirect placeholder. |
 | `fonts/` | Fraunces + Figtree, self-hosted (latin subset, variable). |
