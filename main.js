@@ -24,8 +24,8 @@
 
     links: {
       rules: '', // blank = the built-in rules.html page. Set a URL only if the rules live somewhere else.
-      privacy: '[privacy URL]',
-      terms: '[terms URL]',
+      privacy: 'https://app.nakedtraining.app/privacy-policy',
+      terms: 'https://app.nakedtraining.app/terms-of-service',
     },
 
     // Fill in ONE of these. If your GTM container already loads the Meta Pixel,

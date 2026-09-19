@@ -15,6 +15,7 @@ Live at `rockthefall.nakedtraining.app` (Vercel).
 | `vercel.json` | Security headers, cache headers, redirect placeholder. |
 | `fonts/` | Fraunces + Figtree, self-hosted (latin subset, variable). |
 | `images/` | Page images. WebP with a JPG fallback. |
+| `legal/` | Rewritten Terms of Use and Privacy Policy for the app: `.docx` for attorney review (with a notes page), `.md` for pasting into the app. Built from `tools/legal/` (`npm i docx && node tools/legal/build.js`). Not deployed. |
 | `rock-the-fall-brief.md`, `rock-the-fall-build-kit/` | The brief and design reference. Not deployed (see `.vercelignore`). |
 
 ## Preview locally
@@ -34,7 +35,6 @@ Useful URLs while reviewing:
 
 - `checkout.challenge` / `checkout.yearly`: the two Stackt checkout URLs. Until these are real URLs the pricing buttons just stay on the page.
 - `tracking.gtmId` **or** `tracking.pixelId`: fill in one. If the GTM container already loads the Meta Pixel, leave `pixelId` alone or events double-fire.
-- `links.privacy` / `links.terms` (rules already point to `rules.html`)
 - `reels.*.src` and `.poster`: either a direct MP4 URL (720p, under ~5MB; lightest option) or a Vimeo link like `https://vimeo.com/123456789`. Export the reels as 9:16. Until set, the dark placeholder frames show.
 - `deadline`: currently 11:59 PM Mountain, Oct 5, 2026.
 
