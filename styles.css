@@ -464,14 +464,14 @@ mark.ph-mark { background: #FFE58A; color: #1F1712; border-radius: 4px; padding:
   line-height: 1.35;
 }
 .proof__avatars { display: flex; flex-shrink: 0; }
-.proof__avatars span {
+.proof__avatars img {
   width: 36px; height: 36px;
   border-radius: 50%;
   border: 2px solid var(--bg);
   background: var(--avatar-1);
+  object-fit: cover;
 }
-.proof__avatars span + span { margin-left: -10px; background: var(--avatar-2); }
-.proof__avatars span + span + span { background: var(--avatar-3); }
+.proof__avatars img + img { margin-left: -10px; }
 
 .hero__media { position: relative; }
 .hero__media img {
@@ -1116,13 +1116,10 @@ mark.ph-mark { background: #FFE58A; color: #1F1712; border-radius: 4px; padding:
 }
 .more__title { font-size: clamp(2rem, 1.72rem + 1.14vw, 2.75rem); /* 32 → 44 */ }
 .more-card { display: flex; flex-direction: column; gap: 14px; }
-.more-card .ph { aspect-ratio: 6 / 5; border-radius: 22px; }
+.more-card .ba { overflow: hidden; border-radius: 22px; }
 .more-card figcaption { font-size: 1.125rem; color: var(--ink); }
 @media (min-width: 768px) {
   .more__head { flex-direction: row; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
-}
-@media (min-width: 1200px) {
-  .more-card .ph { aspect-ratio: auto; height: 300px; }
 }
 
 /* ==========================================================================
