@@ -642,7 +642,7 @@ mark.ph-mark { background: #FFE58A; color: #1F1712; border-radius: 4px; padding:
    MEET BROOKE
    ========================================================================== */
 .coach { display: grid; gap: 36px; align-items: center; }
-.coach__photo { width: 100%; aspect-ratio: 4 / 5; max-height: 480px; border-radius: 28px; }
+.coach__photo { width: 100%; aspect-ratio: 4 / 5; max-height: 480px; border-radius: 28px; object-fit: cover; object-position: center top; background: var(--bg-alt); }
 .coach__copy { display: flex; flex-direction: column; gap: 20px; }
 .coach__bio { font-size: clamp(1.0625rem, 1rem + 0.286vw, 1.25rem); }
 .quote-box {
@@ -664,7 +664,7 @@ mark.ph-mark { background: #FFE58A; color: #1F1712; border-radius: 4px; padding:
 .quote-box cite { font-style: normal; font-weight: 700; font-size: 1rem; color: var(--orange-text); }
 @media (min-width: 900px) {
   .coach { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; }
-  .coach__photo { aspect-ratio: auto; height: 560px; max-height: none; }
+  .coach__photo { aspect-ratio: auto; height: 620px; max-height: none; }
   .coach__copy { gap: 24px; }
   .quote-box { padding: 28px 32px; }
 }
