@@ -110,7 +110,7 @@ module.exports = {
       { h3: 'What anyone can do' },
       { ul: [
         `**See and update** your account information in the app.`,
-        `**Delete your account** at any time from the settings in the app. See Section 8 for what happens to your information. Remember to cancel your membership first, as explained in our Terms of Use.`,
+        `**Delete your account** at any time from the settings in the app. See Section 8 for what happens to your information. Deleting your account also cancels a membership purchased on our website. Subscriptions purchased through Apple or Google must be cancelled with Apple or Google.`,
         `**Stop marketing** emails and texts as described in Section 6, and manage push notifications in your device settings.`,
       ] },
       { h3: 'Privacy requests' },
@@ -122,7 +122,7 @@ module.exports = {
     ] },
 
     { h: '8. How long we keep information', body: [
-      `We keep personal information for as long as your account is open and for as long as we need it for the purposes in this policy. When you delete your account, we delete or de-identify your personal information within [CONFIRM: 30] days, and it is removed from our backups within [CONFIRM: 90] days, except for what we need to keep for legal, tax, and accounting reasons (such as purchase records, which we keep for up to seven years), to resolve disputes, to prevent fraud and abuse of offers, and to honor your opt-out choices. Posts you made in community spaces may be removed or shown without your name. Photos and testimonials you allowed us to use in marketing may remain in materials already published, and we will stop future use if you ask.`,
+      `We keep personal information for as long as your account is open and for as long as we need it for the purposes in this policy. When you delete your account, we delete or de-identify your personal information within 30 days, and it is removed from our backups within 90 days, except for what we need to keep for legal, tax, and accounting reasons (such as purchase records, which we keep for up to seven years), to resolve disputes, to prevent fraud and abuse of offers, and to honor your opt-out choices. Posts you made in community spaces may be removed or shown without your name. Photos and testimonials you allowed us to use in marketing may remain in materials already published, and we will stop future use if you ask.`,
     ] },
 
     { h: '9. Security', body: [
@@ -157,12 +157,16 @@ module.exports = {
       `Removed the promise that future changes "will not affect data that was collected under a previous version of this policy."`,
       `Added state privacy rights, a California notice, a Washington/Nevada consumer health data section, international users, children, and security incident language.`,
     ] },
-    { h3: 'Must confirm before publishing (facts only the business or product team knows)' },
+    { h3: 'Facts confirmed by the business (Sept 19, 2026)' },
     { ul: [
-      `Section 8: the two bracketed numbers. How quickly does the platform actually delete or de-identify data after in-app account deletion, and how long do backups persist?`,
-      `Section 3: confirm that progress photos and measurements are visible only to the member and the coaching/support team by default.`,
-      `Section 3 and 4: confirm no workout, body, nutrition, or photo data is sent to Meta, Google, or any other advertising or analytics partner, including through app SDKs and custom events. If any is, stop it or change the text.`,
-      `Section 1: confirm the app does not collect precise GPS location, and whether Apple Health / Health Connect or wearable connections exist today. The text is conditional, so it is accurate either way, but Apple requires the HealthKit advertising restriction to be stated if HealthKit is used.`,
+      `Section 8: personal data is deleted or de-identified within 30 days of in-app account deletion, and ages out of backups within 90 days.`,
+      `Section 3: progress photos and measurements are visible only to the member and the coaching/support team unless the member posts them.`,
+      `Sections 3 and 4: only standard events (page views, sign-ups, checkout, purchase) are sent to Meta and Google. No workout, body, nutrition, or photo data is sent to any advertising or analytics partner.`,
+      `Section 1: the app does not collect precise GPS location and does not connect to Apple Health, Health Connect, or wearables today. The health-app language is conditional so it stays accurate if that is added later.`,
+      `Section 7: deleting an account in the app also cancels a web membership and stops billing.`,
+    ] },
+    { h3: 'Operational items before publishing' },
+    { ul: [
       `Section 5: the "Do Not Share" email opt-out needs a real process: a suppression list applied to Meta/Google custom audiences and to Conversions API events.`,
       `The text-message opt-in forms themselves (GoHighLevel) need the consent language and a link to this policy next to the phone number field. This policy does not create consent.`,
     ] },

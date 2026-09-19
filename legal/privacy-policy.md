@@ -1,6 +1,6 @@
 # Privacy Policy
 
-_Last updated: [Date published]_
+_Last updated: October 1, 2026_
 
 DBAB LLC, doing business as Naked Training ("Naked Training," "we," "us," or "our"), runs the Naked Training mobile apps, the websites at nakedtraining.app and its subdomains, and related memberships, challenges, contests, emails, text messages, and community groups (together, the "Services"). This Privacy Policy explains what information we collect, how we use and share it, and the choices you have.
 
@@ -107,7 +107,7 @@ We send marketing text messages only to people who sign up for them. When you si
 ### What anyone can do
 
 - **See and update** your account information in the app.
-- **Delete your account** at any time from the settings in the app. See Section 8 for what happens to your information. Remember to cancel your membership first, as explained in our Terms of Use.
+- **Delete your account** at any time from the settings in the app. See Section 8 for what happens to your information. Deleting your account also cancels a membership purchased on our website. Subscriptions purchased through Apple or Google must be cancelled with Apple or Google.
 - **Stop marketing** emails and texts as described in Section 6, and manage push notifications in your device settings.
 
 ### Privacy requests
@@ -124,7 +124,7 @@ DBAB LLC is the controller of your personal information. Depending on where you 
 
 ## 8. How long we keep information
 
-We keep personal information for as long as your account is open and for as long as we need it for the purposes in this policy. When you delete your account, we delete or de-identify your personal information within [CONFIRM: 30] days, and it is removed from our backups within [CONFIRM: 90] days, except for what we need to keep for legal, tax, and accounting reasons (such as purchase records, which we keep for up to seven years), to resolve disputes, to prevent fraud and abuse of offers, and to honor your opt-out choices. Posts you made in community spaces may be removed or shown without your name. Photos and testimonials you allowed us to use in marketing may remain in materials already published, and we will stop future use if you ask.
+We keep personal information for as long as your account is open and for as long as we need it for the purposes in this policy. When you delete your account, we delete or de-identify your personal information within 30 days, and it is removed from our backups within 90 days, except for what we need to keep for legal, tax, and accounting reasons (such as purchase records, which we keep for up to seven years), to resolve disputes, to prevent fraud and abuse of offers, and to honor your opt-out choices. Posts you made in community spaces may be removed or shown without your name. Photos and testimonials you allowed us to use in marketing may remain in materials already published, and we will stop future use if you ask.
 
 ## 9. Security
 

@@ -30,7 +30,7 @@ module.exports = {
     ] },
 
     { h: '3. Your account', body: [
-      `You can delete your account at any time from the settings in the app. **Cancel your membership before you delete your account (see Section 5).** Deleting your account does not cancel a subscription purchased through Apple or Google; you must cancel that with Apple or Google. Our Privacy Policy explains what happens to your information when you delete your account.`,
+      `You can delete your account at any time from the settings in the app. **Deleting your account also cancels any membership you purchased on our website, and you will not be charged again. It does not cancel a subscription purchased through Apple or Google; you must cancel that with Apple or Google first (see Section 5.4).** Deleting your account ends your access right away, including any time left in a period you have already paid for. Our Privacy Policy explains what happens to your information when you delete your account.`,
     ] },
 
     { h: '4. Memberships and what is included', body: [
@@ -186,9 +186,10 @@ module.exports = {
     ] },
     { h3: 'Operational items for the product team' },
     { ul: [
-      `Section 3: confirm what the platform does to an active web subscription when a member deletes their account in the app. If deletion does not cancel billing, consider making it do so, or blocking deletion until the membership is cancelled.`,
+      `Section 3 states that deleting an account in the app cancels a web membership and stops billing. The business confirmed this is how the platform works today (Sept 19, 2026). Apple and Google subscriptions are not affected by account deletion, so the in-app deletion screen should remind members to cancel those first.`,
       `Section 5.4: support needs a process to log the date a cancellation request is received and to stop the next renewal even if the reply goes out later.`,
-      `Publish with a visible "Last updated" date, and keep prior versions on file.`,
+      `Planned publish date: October 1, 2026. Send the member notice email (new Terms, 30-day arbitration opt-out) on or before that date, and keep prior versions on file.`,
+      `A self-serve cancel button on the web account page is recommended. It is the single most effective protection for offers that convert into a recurring membership.`,
     ] },
   ],
 };

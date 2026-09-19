@@ -1,6 +1,6 @@
 # Terms of Use
 
-_Last updated: [Date published]_
+_Last updated: October 1, 2026_
 
 These Terms of Use ("Terms") are an agreement between you and DBAB LLC, doing business as Naked Training ("Naked Training," "we," "us," or "our"). They apply to the Naked Training mobile apps, our websites (including nakedtraining.app and its subdomains), and our memberships, programs, challenges, guides, and community features (together, the "Services"). Our Privacy Policy explains how we handle your information.
 
@@ -29,7 +29,7 @@ Results vary from person to person. Testimonials and before and after photos sho
 
 ## 3. Your account
 
-You can delete your account at any time from the settings in the app. **Cancel your membership before you delete your account (see Section 5).** Deleting your account does not cancel a subscription purchased through Apple or Google; you must cancel that with Apple or Google. Our Privacy Policy explains what happens to your information when you delete your account.
+You can delete your account at any time from the settings in the app. **Deleting your account also cancels any membership you purchased on our website, and you will not be charged again. It does not cancel a subscription purchased through Apple or Google; you must cancel that with Apple or Google first (see Section 5.4).** Deleting your account ends your access right away, including any time left in a period you have already paid for. Our Privacy Policy explains what happens to your information when you delete your account.
 
 ## 4. Memberships and what is included
 

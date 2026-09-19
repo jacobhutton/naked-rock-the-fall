@@ -5,5 +5,5 @@ module.exports = {
   address: '314 N 3050 E, Suite B1, St. George, UT 84790',
   email: 'support@nakedprogram.com',
   site: 'nakedtraining.app',
-  updated: '[Date published]',
+  updated: 'October 1, 2026',
 };
