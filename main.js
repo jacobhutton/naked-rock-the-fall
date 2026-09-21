@@ -41,8 +41,8 @@
     // A direct MP4 URL (720p, under ~5MB, 15-30s) or a Vimeo link (https://vimeo.com/123456789).
     // poster = still frame shown while loading.
     reels: {
-      six1225: { src: 'https://vimeo.com/1228914000', poster: 'images/reel-6-12-25-poster.webp' },
-      mechanical: { src: '[Mechanical advantage reel URL]', poster: '[Mechanical advantage poster URL]' },
+      six1225: { src: '[6-12-25 reel URL]', poster: '[6-12-25 poster URL]' },
+      mechanical: { src: 'https://vimeo.com/1228914000', poster: 'images/reel-mechanical-poster.webp' },
     },
   };
 
