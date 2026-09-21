@@ -9,8 +9,8 @@
   const CONFIG = {
     // Stackt web checkout. Any query params already on these URLs are kept.
     checkout: {
-      challenge: '[$50 checkout URL]',
-      yearly: '[$149 checkout URL]',
+      challenge: 'https://app.nakedtraining.app/membersignup/96/86973e3c0ea3ccc42e96c16f2749fef4',
+      yearly: 'https://app.nakedtraining.app/membersignup/97/1363cddb247b233a7352873244ce48fe',
     },
 
     // Used for the InitiateCheckout event value.
