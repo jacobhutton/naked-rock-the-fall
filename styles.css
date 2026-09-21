@@ -1114,6 +1114,8 @@ mark.ph-mark { background: #FFE58A; color: #1F1712; border-radius: 4px; padding:
   margin-bottom: 28px;
 }
 .more__title { font-size: clamp(2rem, 1.72rem + 1.14vw, 2.75rem); /* 32 → 44 */ }
+.more__titles { display: flex; flex-direction: column; gap: 10px; }
+@media (max-width: 767.98px) { .more__title em { display: block; } } /* "They rocked it." / "So can you." on phones */
 .more-card { display: flex; flex-direction: column; gap: 14px; }
 .more-card .ba { overflow: hidden; border-radius: 22px; }
 .more-card figcaption { font-size: 1.125rem; color: var(--ink); }
