@@ -41,7 +41,7 @@
     // A direct MP4 URL (720p, under ~5MB, 15-30s) or a Vimeo link (https://vimeo.com/123456789).
     // poster = still frame shown while loading.
     reels: {
-      six1225: { src: '[6-12-25 reel URL]', poster: '[6-12-25 poster URL]' },
+      six1225: { src: 'https://vimeo.com/1228917039', poster: 'images/reel-6-12-25-poster.webp' },
       mechanical: { src: 'https://vimeo.com/1228914000', poster: 'images/reel-mechanical-poster.webp' },
     },
   };
@@ -312,22 +312,26 @@
       };
     };
 
-    // Vimeo iframe player, driven with postMessage so we don't load Vimeo's SDK
+    // Vimeo iframe player, driven with postMessage so we don't load Vimeo's SDK.
+    // The player is preloaded a little before it scrolls into view, so it must NOT autoplay on its
+    // own (it would play off screen). We track whether the reel is in view and tell the player to
+    // play or pause, re-sending once the player reports it is ready.
     const vimeoPlayer = (frame, reel, vimeo) => {
       const iframe = document.createElement('iframe');
       iframe.title = frame.dataset.label || 'Video';
       iframe.allow = 'autoplay; fullscreen; picture-in-picture';
       iframe.setAttribute('frameborder', '0');
-      const qs = new URLSearchParams({
-        autoplay: reducedMotion ? '0' : '1', muted: '1', loop: '1', playsinline: '1', autopause: '0',
-        controls: reducedMotion ? '1' : '0', title: '0', byline: '0', portrait: '0', dnt: '1',
-      });
-      if (vimeo.hash) qs.set('h', vimeo.hash);
-      const src = 'https://player.vimeo.com/video/' + vimeo.id + '?' + qs.toString();
+      let inView = false;
       const send = (method, value) => {
         if (!iframe.contentWindow) return;
         iframe.contentWindow.postMessage(JSON.stringify(value === undefined ? { method } : { method, value }), 'https://player.vimeo.com');
       };
+      const apply = () => send(inView && !reducedMotion ? 'play' : 'pause');
+      iframe.addEventListener('load', () => { window.setTimeout(apply, 300); window.setTimeout(apply, 1500); });
+      window.addEventListener('message', (event) => {
+        if (event.origin !== 'https://player.vimeo.com' || event.source !== iframe.contentWindow) return;
+        try { const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data; if (data && data.event === 'ready') apply(); } catch (e) { /* ignore */ }
+      });
       return {
         el: iframe,
         muted: true,
@@ -338,10 +342,15 @@
             frame.style.backgroundSize = 'cover';
             frame.style.backgroundPosition = 'center';
           }
-          iframe.src = src;
+          const qs = new URLSearchParams({
+            autoplay: inView && !reducedMotion ? '1' : '0', muted: '1', loop: '1', playsinline: '1', autopause: '0',
+            controls: reducedMotion ? '1' : '0', title: '0', byline: '0', portrait: '0', dnt: '1',
+          });
+          if (vimeo.hash) qs.set('h', vimeo.hash);
+          iframe.src = 'https://player.vimeo.com/video/' + vimeo.id + '?' + qs.toString();
         },
-        play() { this.load(); if (!reducedMotion) send('play'); },
-        pause() { send('pause'); },
+        play() { inView = true; this.load(); apply(); window.setTimeout(apply, 800); },
+        pause() { inView = false; apply(); },
         setMuted(m) { this.muted = m; send('setMuted', m); if (!m) { send('setVolume', 1); send('play'); } },
       };
     };
