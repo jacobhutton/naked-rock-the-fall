@@ -31,7 +31,7 @@
     // Fill in ONE of these. If your GTM container already loads the Meta Pixel,
     // leave pixelId alone or events will double-fire.
     tracking: {
-      gtmId: '[GTM-XXXXXXX]',
+      gtmId: 'GTM-WH3HZVV',
       pixelId: '[Meta Pixel ID]',
     },
 
@@ -125,8 +125,14 @@
       init() {
         try {
           window.dataLayer = window.dataLayer || [];
-          if (isSet(CONFIG.tracking.gtmId)) loadGTM(CONFIG.tracking.gtmId.trim());
+          // The pixel stub is tiny, so it starts right away. GTM containers can be heavy, so GTM waits
+          // until the page itself has finished loading. Events pushed before then are queued, not lost.
           if (isSet(CONFIG.tracking.pixelId)) loadPixel(CONFIG.tracking.pixelId.trim());
+          if (isSet(CONFIG.tracking.gtmId)) {
+            const start = () => loadGTM(CONFIG.tracking.gtmId.trim());
+            if (document.readyState === 'complete') start();
+            else window.addEventListener('load', start, { once: true });
+          }
         } catch (e) { /* tracking must never break the page */ }
       },
       // Pushes to the dataLayer for GTM, and calls fbq directly only if this file loaded the pixel.
