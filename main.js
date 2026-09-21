@@ -125,13 +125,28 @@
       init() {
         try {
           window.dataLayer = window.dataLayer || [];
-          // The pixel stub is tiny, so it starts right away. GTM containers can be heavy, so GTM waits
-          // until the page itself has finished loading. Events pushed before then are queued, not lost.
+          // The pixel stub is tiny, so it starts right away.
           if (isSet(CONFIG.tracking.pixelId)) loadPixel(CONFIG.tracking.pixelId.trim());
+
+          // GTM containers are heavy (this one pulls in GA4, two Meta pixels, Google Ads, Drip, Clarity).
+          // On a fast host the window "load" event fires before the hero image has painted, so starting
+          // GTM right at load makes all that script work compete with the first paint. Instead GTM starts
+          // on the visitor's first interaction, or GTM_DELAY_MS after load, whichever comes first.
+          // dataLayer events pushed before then are queued, not lost.
           if (isSet(CONFIG.tracking.gtmId)) {
-            const start = () => loadGTM(CONFIG.tracking.gtmId.trim());
-            if (document.readyState === 'complete') start();
-            else window.addEventListener('load', start, { once: true });
+            const GTM_DELAY_MS = 2000;
+            const wake = ['scroll', 'pointerdown', 'touchstart', 'keydown'];
+            let started = false;
+            const start = () => {
+              if (started) return;
+              started = true;
+              wake.forEach((type) => window.removeEventListener(type, start, { capture: true }));
+              loadGTM(CONFIG.tracking.gtmId.trim());
+            };
+            wake.forEach((type) => window.addEventListener(type, start, { capture: true, passive: true }));
+            const arm = () => window.setTimeout(start, GTM_DELAY_MS);
+            if (document.readyState === 'complete') arm();
+            else window.addEventListener('load', arm, { once: true });
           }
         } catch (e) { /* tracking must never break the page */ }
       },
