@@ -41,7 +41,7 @@
     // A direct MP4 URL (720p, under ~5MB, 15-30s) or a Vimeo link (https://vimeo.com/123456789).
     // poster = still frame shown while loading.
     reels: {
-      six1225: { src: '[6-12-25 reel URL]', poster: '[6-12-25 poster URL]' },
+      six1225: { src: 'https://vimeo.com/1228914000', poster: 'images/reel-6-12-25-poster.webp' },
       mechanical: { src: '[Mechanical advantage reel URL]', poster: '[Mechanical advantage poster URL]' },
     },
   };
@@ -299,7 +299,7 @@
       video.setAttribute('muted', '');
       video.setAttribute('playsinline', '');
       video.preload = 'none';
-      if (isUrl(reel.poster)) video.poster = reel.poster;
+      if (isSet(reel.poster)) video.poster = reel.poster;
       if (frame.dataset.label) video.setAttribute('aria-label', frame.dataset.label);
       if (reducedMotion) video.controls = true; // no autoplay; let the viewer start it
       return {
@@ -328,15 +328,18 @@
         if (!iframe.contentWindow) return;
         iframe.contentWindow.postMessage(JSON.stringify(value === undefined ? { method } : { method, value }), 'https://player.vimeo.com');
       };
-      if (isUrl(reel.poster)) {
-        frame.style.backgroundImage = 'url("' + reel.poster + '")';
-        frame.style.backgroundSize = 'cover';
-        frame.style.backgroundPosition = 'center';
-      }
       return {
         el: iframe,
         muted: true,
-        load() { if (!iframe.src) iframe.src = src; },
+        load() {
+          if (iframe.src) return;
+          if (isSet(reel.poster)) { // still frame behind the player while Vimeo loads
+            frame.style.backgroundImage = 'url("' + reel.poster + '")';
+            frame.style.backgroundSize = 'cover';
+            frame.style.backgroundPosition = 'center';
+          }
+          iframe.src = src;
+        },
         play() { this.load(); if (!reducedMotion) send('play'); },
         pause() { send('pause'); },
         setMuted(m) { this.muted = m; send('setMuted', m); if (!m) { send('setVolume', 1); send('play'); } },
