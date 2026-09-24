@@ -2,6 +2,8 @@
 
 Eight emails to the main list (leads + lapsed members), in Brooke's voice, designed to match the lander.
 
+> The ten **post-purchase** emails (sent after someone buys) share this build. See [README-post-purchase.md](README-post-purchase.md).
+
 - **Review them:** open `dist/preview.html` in a browser. Every email at desktop and phone width, with subject and preview text.
 - **Send them:** paste the files from `dist/drip/` or `dist/ghl/` into the platform's HTML/code editor. Same emails, different merge tags.
 - **Change them:** copy lives in `content.js`, the look lives in `build.js`. Then run `node emails/build.js`.
@@ -12,7 +14,7 @@ Enrollment closes Mon Oct 5 at 11:59 PM Mountain. Times are suggestions.
 
 | # | Send | File | Subject | Preview text |
 |---|---|---|---|---|
-| 1 | Tue Sep 22, 6:30 AM MT | `01-launch.html` | Rock the Fall is open | Eight weeks of training with me, starting October 5. Five challengers win $2,000 each. |
+| 1 | Tue Sep 22, 6:30 AM MT | `01-launch.html` | Win $2,000 in my 8-week fall challenge | We start October 5. Train at home or the gym. You don't have to be the fittest to win. |
 | 2 | Thu Sep 24, 6:30 AM MT | `02-program.html` | How 6-12-25 works | One muscle group. Three exercises. No rest. Here's what the training in Rock the Fall looks like. |
 | 3 | Sun Sep 27, 7:00 AM MT | `03-results.html` | "The first one I actually finished" | Kadee lost 10 lbs and set new PRs. Here's what she says made the difference. |
 | 4 | Tue Sep 29, 6:30 AM MT | `04-prize.html` | 5 winners. $2,000 each. | You don't have to be the most advanced person in the challenge. Here's exactly how winners are chosen. |
