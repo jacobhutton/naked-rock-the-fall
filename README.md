@@ -30,6 +30,11 @@ Useful URLs while reviewing:
 
 - `?placeholders=1` highlights every `[bracketed]` placeholder still on the page
 - `?preview=closed` shows the page as it looks after enrollment closes
+- `?v=method` / `?v=simple` forces the programs-section variant (see below)
+
+## Programs section variants
+
+The "Programs for every goal and setting" section has two versions. **Simple** (the default) is the six-card grid. **Method** adds the dark 6-12-25 and mechanical advantage block with the two reels above the grid. Method is shown only to clicks from the reel ads: when `utm_content` or `utm_term` matches `reel`, `_RL_`, `61225` or `mech` (the ads are named `RTF_RL_61225` and `RTF_RL_MechanicalAdvantage`). The rule lives in the small inline `<script>` in the `<head>` of `index.html`; it runs before the page paints, sets `data-programs` on `<html>`, and the choice sticks for the tab in `sessionStorage` (`rtf_programs`). `main.js` removes the other variant's elements at boot, so the reels never load for simple.
 
 ## Before launch: fill in `CONFIG` (top of `main.js`)
 
@@ -42,7 +47,7 @@ Everything else still to fill is `[bracketed]` in `index.html`. Search for `[` o
 
 ## Tracking
 
-- `ViewContent` fires on page load. `InitiateCheckout` fires on the two pricing buttons (with plan, value, currency).
+- `ViewContent` fires on page load. `InitiateCheckout` fires on the two pricing buttons (with plan, value, currency). Both carry `rtf_variant` (`simple` or `method`), so the programs-section variant can be reported from GTM later without touching the page.
 - Both go to the GTM `dataLayer` as custom events named exactly `ViewContent` and `InitiateCheckout`. If `pixelId` is set they also go straight to `fbq`.
 - `Purchase` is never fired here. It belongs on the checkout confirmation (firing it here double-counts with CAPI).
 - `utm_source, utm_medium, utm_campaign, utm_content, utm_term, fbclid, gclid` are saved for the session and appended to the checkout URLs on click. Params already on the checkout URL are never overwritten. Stackt checkout needs to read and store them for attribution to survive.

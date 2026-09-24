@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Rock the Fall 8-Week Challenge with Brooke Ence | Naked Training</title>
-  <meta name="description" content="Eight weeks of training with Brooke Ence, a community that shows up with you, and a chance to win $2,000. Starts October 5. Train with any program in the Naked Training app.">
+  <meta name="description" content="Whether you're starting fresh or starting over: eight weeks with a daily plan, a community that shows up with you, and five $2,000 winners. Starts October 5. Train with any program in the Naked Training app.">
   <link rel="canonical" href="https://rockthefall.nakedtraining.app/">
   <meta name="theme-color" content="#FBF6EF">
 
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Naked Training">
   <meta property="og:title" content="Rock the Fall 8-Week Challenge with Brooke Ence">
-  <meta property="og:description" content="Eight weeks of training with Brooke Ence, a community that shows up with you, and a chance to win $2,000. Starts October 5.">
+  <meta property="og:description" content="Whether you're starting fresh or starting over: eight weeks with a daily plan, a community that shows up with you, and five $2,000 winners. Starts October 5.">
   <meta property="og:url" content="https://rockthefall.nakedtraining.app/">
   <meta property="og:image" content="https://rockthefall.nakedtraining.app/images/og.jpg">
   <meta property="og:image:width" content="1200">
@@ -24,7 +24,28 @@
   <link rel="preload" href="fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="images/hero.webp" as="image" type="image/webp" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css">
+  <!-- Programs section variant, decided here (before first paint) because main.js is deferred.
+       ?v=method or ?v=simple forces it. Clicks from the reel ads (utm_content / utm_term matching
+       reel, _RL_, 61225 or mech) get "method": the 6-12-25 and mechanical advantage block above the
+       program grid. Everyone else gets "simple": the grid alone. The choice sticks for the tab
+       (sessionStorage) so reloads without params keep it. styles.css hides the other variant's
+       elements and main.js removes them, so the reels never load in the simple variant. -->
+  <script>
+    (function () {
+      var v = 'simple';
+      try {
+        var q = new URLSearchParams(location.search);
+        var forced = (q.get('v') || '').toLowerCase();
+        var utm = (q.get('utm_content') || '') + ' ' + (q.get('utm_term') || '');
+        if (forced === 'method' || forced === 'simple') v = forced;
+        else if (utm.trim()) v = /reel|_RL_|61225|mech/i.test(utm) ? 'method' : 'simple';
+        else if (sessionStorage.getItem('rtf_programs') === 'method') v = 'method';
+      } catch (e) {}
+      try { sessionStorage.setItem('rtf_programs', v); } catch (e) {}
+      document.documentElement.setAttribute('data-programs', v);
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css?v=20260924">
 
   <!-- ======================================================================
        TRACKING
@@ -34,7 +55,7 @@
        Never fire Purchase on this page. It belongs on the checkout confirmation.
        ====================================================================== -->
 
-  <script src="main.js" defer></script>
+  <script src="main.js?v=20260924" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -52,6 +73,12 @@
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
   <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
+  <symbol id="i-kettlebell" viewBox="0 0 24 24"><circle cx="12" cy="15" r="6"/><path d="M8.5 10.2V6.5a3.5 3.5 0 0 1 7 0v3.7"/></symbol>
+  <symbol id="i-house" viewBox="0 0 24 24"><path d="M3.5 11.5L12 4l8.5 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-6h4v6"/></symbol>
+  <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l3-7 4 14 3-7h4"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M21 3L3 10.5l7.5 3 3 7.5z"/><path d="M10.5 13.5L21 3"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
 </svg>
 
 <!-- ============================ NAV ============================ -->
@@ -70,8 +97,8 @@
     <div class="wrap hero__grid">
       <div class="hero__copy">
         <p class="pill">Rock the Fall · 8-Week Challenge</p>
-        <h1 class="hero__title">Fall is here. Let's get to <em>work.</em></h1>
-        <p class="lede hero__lede">Eight weeks of training with Brooke Ence, a community that shows up with you, and a chance to win $2,000. Finish the year stronger than you started it.</p>
+        <h1 class="hero__title">Finish the year <em>stronger</em> than you started it.</h1>
+        <p class="lede hero__lede">Whether you're starting fresh or starting over, this is eight weeks of doing it right: a daily plan, a community that shows up with you, and $2,000 on the line for five winners.</p>
         <div class="hero__cta">
           <a class="btn" href="#pricing">Join the Challenge
             <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg>
@@ -81,13 +108,12 @@
             Starts October 5
           </p>
         </div>
+        <!-- Rating line carried over from the Summer Showdown page (same claim, same wording). -->
         <p class="proof">
-          <span class="proof__avatars" aria-hidden="true">
-            <img src="images/avatar-karlie.webp" width="36" height="36" alt="" decoding="async">
-            <img src="images/avatar-amy.webp" width="36" height="36" alt="" decoding="async">
-            <img src="images/avatar-rylee.webp" width="36" height="36" alt="" decoding="async">
-          </span>
-          <span>Join <strong>50,000+ women</strong> who've trained with Brooke</span>
+          <svg class="proof__stars" viewBox="0 0 120 24" aria-hidden="true" focusable="false">
+            <use href="#i-star" width="24" height="24"/><use href="#i-star" x="24" width="24" height="24"/><use href="#i-star" x="48" width="24" height="24"/><use href="#i-star" x="72" width="24" height="24"/><use href="#i-star" x="96" width="24" height="24"/>
+          </svg>
+          <span><strong>4.7 average</strong> · "This program is amazing"</span>
         </p>
       </div>
       <div class="hero__media">
@@ -126,7 +152,7 @@
   </div>
 
   <!-- ============================ TRANSFORMATIONS ============================ -->
-  <section class="section" aria-labelledby="results-title">
+  <section class="section section--alt" aria-labelledby="results-title">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Real results</p>
@@ -185,7 +211,7 @@
   </section>
 
   <!-- ============================ PROBLEM / PLAN ============================ -->
-  <section class="section section--alt" aria-labelledby="plan-title">
+  <section class="section" aria-labelledby="plan-title">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">The truth</p>
@@ -215,37 +241,19 @@
     </div>
   </section>
 
-  <!-- ============================ MEET BROOKE ============================ -->
-  <section class="section" aria-labelledby="coach-title">
-    <div class="wrap coach">
-      <picture>
-        <source type="image/webp" srcset="images/brooke-coach-700.webp 700w, images/brooke-coach-1200.webp 1200w" sizes="(min-width: 900px) 540px, 100vw">
-        <img class="coach__photo" src="images/brooke-coach.jpg" width="1200" height="1440" alt="Brooke Ence smiling and flexing her arm in the gym" loading="lazy" decoding="async">
-      </picture>
-      <div class="coach__copy">
-        <p class="eyebrow">Your coach</p>
-        <h2 class="h2" id="coach-title">Train with <em>Brooke Ence.</em></h2>
-        <!-- First person, in Brooke's voice. Needs her sign-off along with the quote below. -->
-        <p class="coach__bio">Hi, I'm Brooke. I spent years training at the highest level of CrossFit, and here's what I learned: you don't need to train like a pro to get strong. You need a plan that fits your real life. That's what I build. Workouts for busy schedules and real bodies, with results you can keep.</p>
-        <figure class="quote-box">
-          <!-- Draft quote. Needs Brooke's sign-off before launch. -->
-          <blockquote>"Most people wait until January. I built Rock the Fall so you can walk into the holidays already feeling strong, not starting over."</blockquote>
-          <figcaption><cite>Brooke Ence</cite></figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
   <!-- ============================ TRAIN YOUR WAY ============================ -->
+  <!-- Two variants share this section. Elements marked data-programs-only="method" only exist for
+       visitors from the reel ads (html[data-programs="method"], set by the inline script in <head>).
+       main.js removes them for everyone else, so the reels are never loaded in the simple variant. -->
   <section class="section section--alt" aria-labelledby="programs-title">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Your training, your way</p>
-        <h2 class="h2" id="programs-title">Pick your program. <em>Every one counts.</em></h2>
-        <p class="lede">Enter the challenge with any program in the Naked Training app. Train in a full gym, at home, or on the road.</p>
+        <h2 class="h2" id="programs-title">Programs for <em>every goal and setting.</em></h2>
+        <p class="lede">Whether you're in a fully equipped facility or your living room, we have a plan that fits your life and equipment.</p>
       </div>
 
-      <div class="featured on-dark">
+      <div class="featured on-dark" data-programs-only="method">
         <div class="featured__head">
           <div class="featured__title-group">
             <p class="pill pill--solid">Recommended</p>
@@ -304,30 +312,36 @@
       </div>
 
       <div class="programs">
-        <h3 class="h3 programs__title">Or choose any of these:</h3>
-        <div class="swipe swipe--programs" data-swipe aria-label="Other programs">
+        <h3 class="h3 programs__title" data-programs-only="method">Or choose any of these:</h3>
+        <div class="swipe swipe--programs" data-swipe aria-label="Programs">
           <div class="program-card">
-            <h4>Functional Gym</h4>
+            <span class="program-card__icon" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-kettlebell"/></svg></span>
+            <h3>Functional Gym</h3>
             <p>Build strength, power, and real-world fitness with barbells, kettlebells, and turf work.</p>
           </div>
           <div class="program-card">
-            <h4>Home Workouts</h4>
+            <span class="program-card__icon" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-house"/></svg></span>
+            <h3>Home Workouts</h3>
             <p>Minimal equipment, maximum results. All you need is dumbbells and bands.</p>
           </div>
           <div class="program-card">
-            <h4>Bodybuilding</h4>
+            <span class="program-card__icon" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-pulse"/></svg></span>
+            <h3>Bodybuilding</h3>
             <p>Focused routines to build muscle and change your shape.</p>
           </div>
           <div class="program-card">
-            <h4>Travel &amp; Bodyweight</h4>
+            <span class="program-card__icon" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-plane"/></svg></span>
+            <h3>Travel &amp; Bodyweight</h3>
             <p>No gym, no problem. Short, intense sessions you can do anywhere.</p>
           </div>
           <div class="program-card">
-            <h4>Peaches</h4>
+            <span class="program-card__icon" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-target"/></svg></span>
+            <h3>Peaches</h3>
             <p>Our glute-focused program to grow and shape your lower body.</p>
           </div>
           <div class="program-card">
-            <h4>Lifestyle</h4>
+            <span class="program-card__icon" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-flame"/></svg></span>
+            <h3>Lifestyle</h3>
             <p>A balanced approach to fitness that fits into your everyday routine.</p>
           </div>
         </div>
@@ -648,6 +662,27 @@
       <span class="guarantee__icon" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-shield"/></svg></span>
       <h2 class="h3 guarantee__title" id="guarantee-title">Try it <span class="nowrap">risk-free</span> for 7 days.</h2>
       <p class="lede">If you're not happy with Rock the Fall in the first 7 days, we'll refund you in full. No questions asked.</p>
+    </div>
+  </section>
+
+  <!-- ============================ MEET BROOKE ============================ -->
+  <section class="section" aria-labelledby="coach-title">
+    <div class="wrap coach">
+      <picture>
+        <source type="image/webp" srcset="images/brooke-coach-700.webp 700w, images/brooke-coach-1200.webp 1200w" sizes="(min-width: 900px) 540px, 100vw">
+        <img class="coach__photo" src="images/brooke-coach.jpg" width="1200" height="1440" alt="Brooke Ence smiling and flexing her arm in the gym" loading="lazy" decoding="async">
+      </picture>
+      <div class="coach__copy">
+        <p class="eyebrow">Your coach</p>
+        <h2 class="h2" id="coach-title">Train with <em>Brooke Ence.</em></h2>
+        <!-- First person, in Brooke's voice. Needs her sign-off along with the quote below. -->
+        <p class="coach__bio">Hi, I'm Brooke. I spent years training at the highest level of CrossFit, and here's what I learned: you don't need to train like a pro to get strong. You need a plan that fits your real life. That's what I build. Workouts for busy schedules and real bodies, with results you can keep.</p>
+        <figure class="quote-box">
+          <!-- Draft quote. Needs Brooke's sign-off before launch. -->
+          <blockquote>"Most people wait until January. I built Rock the Fall so you can walk into the holidays already feeling strong, not starting over."</blockquote>
+          <figcaption><cite>Brooke Ence</cite></figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 

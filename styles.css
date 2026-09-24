@@ -87,9 +87,6 @@
   --rules-link: #F0C9AE;
   --cta-accent: #FBE3D2;
   --cta-outline: #F0A57C;
-  --avatar-1: #E9C9AE;
-  --avatar-2: #D9A889;
-  --avatar-3: #C28B6B;
 
   --font-serif: 'Fraunces', 'Fraunces Fallback', Georgia, serif;
   --font-sans: 'Figtree', 'Figtree Fallback', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -137,6 +134,11 @@ a:hover { color: var(--ink); }
 strong { font-weight: 700; color: var(--ink); }
 [id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
 [hidden] { display: none !important; }
+
+/* Programs section variants. html[data-programs] is set by the inline script in <head>
+   (absent = no JS = simple). main.js also removes the other variant's nodes at boot. */
+html:not([data-programs="method"]) [data-programs-only="method"] { display: none; }
+html[data-programs="method"] [data-programs-only="simple"] { display: none; }
 
 :focus-visible {
   outline: 3px solid var(--orange);
@@ -390,8 +392,8 @@ mark.ph-mark { background: #FFE58A; color: #1F1712; border-radius: 4px; padding:
     padding-inline: 0;
   }
 }
-@media (min-width: 1200px) {
-  .swipe--programs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (min-width: 1024px) {
+  .swipe--programs { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
 }
 
 /* ==========================================================================
@@ -463,15 +465,7 @@ mark.ph-mark { background: #FFE58A; color: #1F1712; border-radius: 4px; padding:
   font-size: 1.0625rem;
   line-height: 1.35;
 }
-.proof__avatars { display: flex; flex-shrink: 0; }
-.proof__avatars img {
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  border: 2px solid var(--bg);
-  background: var(--avatar-1);
-  object-fit: cover;
-}
-.proof__avatars img + img { margin-left: -10px; }
+.proof__stars { width: 100px; height: 20px; flex-shrink: 0; fill: var(--orange); }
 
 .hero__media { position: relative; }
 .hero__media img {
@@ -618,7 +612,7 @@ mark.ph-mark { background: #FFE58A; color: #1F1712; border-radius: 4px; padding:
   padding: 28px 24px;
   border: 1px solid var(--border);
   border-radius: 24px;
-  background: var(--bg);
+  background: var(--bg-alt); /* the section is plain, so the box needs the alt tint to read as a box */
 }
 .compare__box--win {
   border: 2px solid var(--orange);
@@ -804,18 +798,30 @@ mark.ph-mark { background: #FFE58A; color: #1F1712; border-radius: 4px; padding:
 .flow__arrow { align-self: center; color: var(--orange-light); transform: rotate(90deg); }
 .flow__arrow .icon { width: 22px; height: 22px; }
 
-.programs { display: flex; flex-direction: column; gap: 20px; margin-top: 40px; }
+.programs { display: flex; flex-direction: column; gap: 20px; }
+html[data-programs="method"] .programs { margin-top: 40px; } /* gap below the featured block, only when it is there */
 .programs__title { font-size: clamp(1.5rem, 1.41rem + 0.38vw, 1.75rem); }
 .program-card {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   padding: 24px;
   border: 1px solid var(--border);
   border-radius: 20px;
   background: var(--bg);
 }
-.program-card h4 { font-size: 1.3125rem; font-weight: 700; line-height: 1.25; color: var(--ink); }
+.program-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px; height: 48px;
+  margin-bottom: 6px;
+  border-radius: 50%;
+  background: var(--tag-bg);
+  color: var(--orange);
+}
+.program-card__icon .icon { width: 22px; height: 22px; stroke-width: 2; }
+.program-card h3 { font-size: 1.3125rem; font-weight: 700; line-height: 1.25; color: var(--ink); }
 .program-card p { font-size: 1.0625rem; }
 
 @media (min-width: 768px) {
@@ -824,7 +830,8 @@ mark.ph-mark { background: #FFE58A; color: #1F1712; border-radius: 4px; padding:
   .flow { flex-direction: row; align-items: center; gap: 12px; }
   .flow__arrow { transform: none; }
   .flow__step { padding: 18px 12px; }
-  .programs { gap: 24px; margin-top: 48px; }
+  .programs { gap: 24px; }
+  html[data-programs="method"] .programs { margin-top: 48px; }
   .program-card { padding: 30px; }
 }
 @media (min-width: 768px) {

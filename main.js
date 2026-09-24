@@ -44,6 +44,10 @@
       six1225: { src: 'https://vimeo.com/1228917039', poster: 'images/reel-6-12-25-poster.webp' },
       mechanical: { src: 'https://vimeo.com/1228914000', poster: 'images/reel-mechanical-poster.webp' },
     },
+
+    // The programs-section variant (simple | method) is decided by the inline script in
+    // index.html <head>, since it has to run before first paint and this file is deferred.
+    // Change the rule there. This file only reads html[data-programs] (see Variant below).
   };
 
   const isSet = (v) => typeof v === 'string' && v.trim() !== '' && !/^\[.*\]$/.test(v.trim());
@@ -86,6 +90,24 @@
         } catch (e) {
           return url;
         }
+      },
+    };
+  })();
+
+  /* ------------------------------------------------------------------------
+     Programs section variant. The inline script in <head> sets html[data-programs]
+     to "method" (reel-ad traffic: 6-12-25 + mechanical advantage block) or "simple".
+     ------------------------------------------------------------------------ */
+  const Variant = (() => {
+    const programs = document.documentElement.getAttribute('data-programs') === 'method' ? 'method' : 'simple';
+    return {
+      programs,
+      // Runs first at boot, before initReels: removing (not hiding) the other variant's nodes
+      // means no Vimeo iframes, observers or fallbacks are ever created for it.
+      prune() {
+        $$('[data-programs-only]').forEach((node) => {
+          if (node.dataset.programsOnly !== programs) node.remove();
+        });
       },
     };
   })();
@@ -190,6 +212,7 @@
           content_type: 'product',
           value: info.value,
           currency: 'USD',
+          rtf_variant: Variant.programs,
         });
       });
     });
@@ -460,6 +483,7 @@
   /* ------------------------------------------------------------------------
      Boot
      ------------------------------------------------------------------------ */
+  Variant.prune();
   Attribution.capture();
   Tracking.init();
   initCheckout();
@@ -469,5 +493,5 @@
   initFaq();
   initSwipeRows();
   highlightPlaceholders();
-  Tracking.track('ViewContent', { content_name: 'Rock the Fall', content_category: 'Challenge', content_type: 'product' });
+  Tracking.track('ViewContent', { content_name: 'Rock the Fall', content_category: 'Challenge', content_type: 'product', rtf_variant: Variant.programs });
 })();
