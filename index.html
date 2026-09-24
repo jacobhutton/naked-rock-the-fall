@@ -25,8 +25,8 @@
   <link rel="preload" href="fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="images/hero.webp" as="image" type="image/webp" fetchpriority="high">
   <!-- Programs section variant, decided here (before first paint) because main.js is deferred.
-       ?v=method or ?v=simple forces it. Clicks from the reel ads (utm_content / utm_term matching
-       reel, _RL_, 61225 or mech) get "method": the 6-12-25 and mechanical advantage block above the
+       ?v=method or ?v=simple forces it. Clicks from the reel ads or the "How 6-12-25 works" email
+       (utm_content / utm_term matching reel, _RL_, 61225, mech or e2-program) get "method": the 6-12-25 and mechanical advantage block above the
        program grid. Everyone else gets "simple": the grid alone. The choice sticks for the tab
        (sessionStorage) so reloads without params keep it. styles.css hides the other variant's
        elements and main.js removes them, so the reels never load in the simple variant. -->
@@ -38,7 +38,7 @@
         var forced = (q.get('v') || '').toLowerCase();
         var utm = (q.get('utm_content') || '') + ' ' + (q.get('utm_term') || '');
         if (forced === 'method' || forced === 'simple') v = forced;
-        else if (utm.trim()) v = /reel|_RL_|61225|mech/i.test(utm) ? 'method' : 'simple';
+        else if (utm.trim()) v = /reel|_RL_|61225|mech|e2-program/i.test(utm) ? 'method' : 'simple';
         else if (sessionStorage.getItem('rtf_programs') === 'method') v = 'method';
       } catch (e) {}
       try { sessionStorage.setItem('rtf_programs', v); } catch (e) {}
