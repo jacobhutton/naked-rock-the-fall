@@ -1,0 +1,24 @@
+/* Shared styles for the two guide covers that are built here rather than taken from a PDF.
+   Canvas = 1224x1584, which is a US Letter page at 144 dpi (the same size tools/covers.sh
+   renders the PDF covers at). Type is the Mac's Futura Condensed ExtraBold, obliqued, which
+   is what the real covers use, so these only render correctly on a Mac with Futura installed. */
+html, body { margin: 0; width: 1224px; height: 1584px; overflow: hidden; background: #F4F1EC; }
+.cover {
+  position: relative; width: 1224px; height: 1584px; overflow: hidden; background: #F4F1EC;
+  font-family: Futura, 'Futura PT', sans-serif; font-stretch: condensed; font-weight: 800; font-style: italic;
+  text-transform: uppercase;
+}
+.photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* White wash over the top so the purple title reads on any photo */
+.scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.84) 30%, rgba(255,255,255,.4) 50%, rgba(255,255,255,0) 64%); }
+/* NAKED wordmark, lifted from the Fast Food Guide PDF as a soft mask and filled with the brand purple */
+.wordmark {
+  position: absolute; top: 72px; left: 50%; width: 190px; height: 25px; transform: translateX(-50%);
+  background: #4D24E1;
+  -webkit-mask-image: url(naked-wordmark-mask.png); mask-image: url(naked-wordmark-mask.png);
+  -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center; mask-mode: luminance;
+}
+.text { position: absolute; left: 80px; top: 330px; }
+.title { margin: 0; font-size: 200px; line-height: .9; letter-spacing: -.01em; color: #4D24E1; }
+.byline { margin: 36px 0 0 6px; font-size: 66px; line-height: 1; letter-spacing: .01em; color: #1F1712; }

@@ -1,0 +1,26 @@
+<!doctype html>
+<!-- Fast Food Guide cover. The PDF has no cover page (page 1 is the introduction), so this one
+     is built in the style of the other guides, using the drive-thru photo from that first page
+     (pulled out of the PDF with pdfimages). Rendered by tools/covers.sh. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="cover.css">
+  <style>
+    /* Scaled from the top so the bag handoff sits under the title */
+    .photo { object-position: 30% 50%; transform: scale(1.5); transform-origin: 28% 0%; }
+    .scrim { background: linear-gradient(180deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.88) 28%, rgba(255,255,255,.45) 48%, rgba(255,255,255,0) 62%); }
+  </style>
+</head>
+<body>
+  <div class="cover">
+    <img class="photo" src="../../images/originals/guides/fast-food-drive-thru.png" alt="">
+    <div class="scrim"></div>
+    <div class="wordmark"></div>
+    <div class="text">
+      <h1 class="title">Fast<br>Food<br>Guide</h1>
+      <p class="byline">With Brooke Ence</p>
+    </div>
+  </div>
+</body>
+</html>

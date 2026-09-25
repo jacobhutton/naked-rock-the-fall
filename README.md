@@ -16,6 +16,7 @@ Live at `rockthefall.nakedtraining.app` (Vercel).
 | `fonts/` | Fraunces + Figtree, self-hosted (latin subset, variable). |
 | `images/` | Page images. WebP with a JPG fallback. |
 | `legal/` | Rewritten Terms of Use and Privacy Policy for the app: `.docx` for attorney review (with a notes page), `.md` for pasting into the app. Built from `tools/legal/` (`npm i docx && node tools/legal/build.js`). Not deployed. |
+| `tools/covers.sh`, `tools/covers/` | Builds the six guide cover images in `images/guides/` (see Images). Not deployed. |
 | `rock-the-fall-brief.md`, `rock-the-fall-build-kit/` | The brief and design reference. Not deployed (see `.vercelignore`). |
 
 ## Preview locally
@@ -59,6 +60,8 @@ Automatic at the deadline: the countdown becomes "Enrollment is closed", the $50
 ## Images
 
 Current images are low-res crops from the design. To swap in originals: drop them in `images/originals/` (not deployed) and re-export as WebP + JPG at the same filenames. Hero wants ~1200px wide, before/afters ~800px wide. Add an `images/og.jpg` at 1200x630 for link previews.
+
+**Guide covers.** The six book covers in "Everything you need" are `images/guides/<slug>-260.webp`, `<slug>-520.webp` and `<slug>.jpg`, built by `tools/covers.sh`. Four are page 1 of the guide PDFs. The Fast Food Guide PDF has no cover page and the Perfect Week Workbook is a landscape slide, so those two are HTML pages in `tools/covers/` (the guide's drive-thru photo for Fast Food, a Brooke shoot photo for Perfect Week, Naked purple, the Mac's Futura Condensed ExtraBold) rendered by headless Chrome. To rebuild: copy the PDFs (named as at the top of the script) and the two photos into `images/originals/guides/` (gitignored, not deployed), `brew install poppler webp`, then run `tools/covers.sh`. The post-purchase emails use the same JPGs from the live site.
 
 ## Deploy
 

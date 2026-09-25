@@ -73,15 +73,15 @@ const CONFIG = {
   // Same address the lander, rules, and legal pages use.
   supportEmail: 'support@nakedprogram.com',
 
-  /* The six guides, in the order they appear on the lander. `cover` matches the
-     CSS book covers in styles.css: orange, ink, peach, ink, peach, orange. */
+  /* The six guides, in the order they appear on the lander. `slug` names the cover
+     image in the lander's images/guides/ (built by tools/covers.sh). */
   guides: [
-    { title: 'Flexible Dieting Guide', desc: 'Fuel your body without cutting out the foods you love.', cover: 'orange', url: 'https://storage.googleapis.com/msgsndr/R0neJruX8831nFHSBJ6V/media/6944800b0190af4eddd1915b.pdf' },
-    { title: 'Fast Food Guide', desc: 'Smart orders for busy days, without derailing your progress.', cover: 'ink', url: 'https://storage.googleapis.com/msgsndr/R0neJruX8831nFHSBJ6V/media/6738d615f9bf3d131559a335.pdf' },
-    { title: 'Macro Recipe Book', desc: 'Simple, macro-friendly recipes that take the guesswork out of eating well.', cover: 'peach', url: 'https://storage.googleapis.com/msgsndr/R0neJruX8831nFHSBJ6V/media/67339500d5e571966e67e3d3.pdf' },
-    { title: 'Supplement Guide', desc: "What's worth taking, what isn't, and how to save your money.", cover: 'ink', url: 'https://storage.googleapis.com/msgsndr/R0neJruX8831nFHSBJ6V/media/6733954386d01482cdba8f3f.pdf' },
-    { title: 'Perfect Week Workbook', desc: 'Plan your workouts, meals, and recovery so every week stays on track.', cover: 'peach', url: 'https://storage.googleapis.com/msgsndr/R0neJruX8831nFHSBJ6V/media/695c42aff37f20f5e7514e5f.pdf' },
-    { title: 'Muscle Building Guide', desc: 'How to train and eat to build strength and muscle.', cover: 'orange', url: 'https://storage.googleapis.com/msgsndr/R0neJruX8831nFHSBJ6V/media/692369c5136c3a2818366761.pdf' },
+    { title: 'Flexible Dieting Guide', desc: 'Fuel your body without cutting out the foods you love.', slug: 'flexible-dieting', url: 'https://storage.googleapis.com/msgsndr/R0neJruX8831nFHSBJ6V/media/6944800b0190af4eddd1915b.pdf' },
+    { title: 'Fast Food Guide', desc: 'Smart orders for busy days, without derailing your progress.', slug: 'fast-food', url: 'https://storage.googleapis.com/msgsndr/R0neJruX8831nFHSBJ6V/media/6738d615f9bf3d131559a335.pdf' },
+    { title: 'Macro Recipe Book', desc: 'Simple, macro-friendly recipes that take the guesswork out of eating well.', slug: 'macro-recipes', url: 'https://storage.googleapis.com/msgsndr/R0neJruX8831nFHSBJ6V/media/67339500d5e571966e67e3d3.pdf' },
+    { title: 'Supplement Guide', desc: "What's worth taking, what isn't, and how to save your money.", slug: 'supplement', url: 'https://storage.googleapis.com/msgsndr/R0neJruX8831nFHSBJ6V/media/6733954386d01482cdba8f3f.pdf' },
+    { title: 'Perfect Week Workbook', desc: 'Plan your workouts, meals, and recovery so every week stays on track.', slug: 'perfect-week', url: 'https://storage.googleapis.com/msgsndr/R0neJruX8831nFHSBJ6V/media/695c42aff37f20f5e7514e5f.pdf' },
+    { title: 'Muscle Building Guide', desc: 'How to train and eat to build strength and muscle.', slug: 'muscle-building', url: 'https://storage.googleapis.com/msgsndr/R0neJruX8831nFHSBJ6V/media/692369c5136c3a2818366761.pdf' },
   ],
 };
 
@@ -128,7 +128,6 @@ const C = {
   barMid: '#D9713A',
   barLow: '#A9552B',
   ctaAccent: '#FBE3D2',
-  coverPeach: '#E8A67A',
 };
 // Fraunces + Figtree load in Apple Mail and a few others. Gmail and Outlook get Georgia / Arial.
 const SERIF = "'Fraunces', Georgia, 'Times New Roman', serif";
@@ -337,16 +336,10 @@ ${items.map((t) => `<tr><td width="28" valign="top" style="padding:0 0 8px 0;fon
 <p style="margin:14px 0 0 0;font-family:${SANS};font-size:14px;line-height:1.5;color:${C.muted};">Or go straight to the ${h.aExt('App Store', CONFIG.ext.apple)} or ${h.aExt('Google Play', CONFIG.ext.google)}.</p>`, { pt: 8, pb: 26 }),
 
     /* The six guides as book covers with a download link each. Two up on
-       desktop, stacked on phones. Mirrors the "All included" lander section. */
+       desktop, stacked on phones. Mirrors the "All included" lander section.
+       The cover is the same JPG the lander uses (260x336, shown at 86 wide). */
     guides: (items = CONFIG.guides, { pb = 24 } = {}) => {
-      const skin = { orange: [C.orange, C.white], ink: [C.ink, C.onDark], peach: [C.coverPeach, C.ink] };
-      const cover = (g) => {
-        const [bg, fg] = skin[g.cover] || skin.orange;
-        return `<table role="presentation" width="86" cellpadding="0" cellspacing="0" border="0" bgcolor="${bg}" style="width:86px;background:${bg};border-radius:3px 8px 8px 3px;"><tr><td height="116" valign="top" style="height:116px;padding:11px 10px;">
-<p style="margin:0;font-family:${SANS};font-size:6px;line-height:1.3;font-weight:700;letter-spacing:0.14em;color:${fg};">NAKED TRAINING</p>
-<p style="margin:26px 0 0 0;font-family:${SERIF};font-size:12px;line-height:1.15;font-weight:600;color:${fg};">${g.title}</p>
-</td></tr></table>`;
-      };
+      const cover = (g) => `<img src="${images}/guides/${g.slug}.jpg" width="86" height="111" alt="" style="display:block;width:86px;height:auto;border:0;border-radius:3px 8px 8px 3px;">`;
       const card = (g) => `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${C.white}" style="background:${C.white};border:1px solid ${C.border};border-radius:20px;"><tr><td style="padding:18px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
 <td width="96" valign="top" style="padding:0 14px 0 0;">${cover(g)}</td>

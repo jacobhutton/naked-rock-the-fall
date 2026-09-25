@@ -83,7 +83,6 @@
   --reel-bg: #3A2D25;
   --bar-mid: #D9713A;
   --bar-low: #A9552B;
-  --cover-peach: #E8A67A;
   --rules-link: #F0C9AE;
   --cta-accent: #FBE3D2;
   --cta-outline: #F0A57C;
@@ -873,21 +872,23 @@ html[data-programs="method"] .programs { margin-top: 40px; } /* gap below the fe
   border-radius: 16px;
   background: var(--bg-alt);
 }
+/* Book frame for the real cover images (images/guides/, built by tools/covers.sh) */
 .cover {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  position: relative;
   width: 72px; height: 96px;
-  padding: 9px;
+  overflow: hidden;
   border-radius: 3px 7px 7px 3px;
-  background: var(--orange);
-  color: var(--white);
-  box-shadow: 6px 8px 16px rgba(31, 23, 18, 0.18);
+  background: var(--border-soft); /* shows until the lazy image arrives */
+  box-shadow: 0 1px 2px rgba(31, 23, 18, 0.10), 6px 8px 16px rgba(31, 23, 18, 0.22);
 }
-.cover--ink { background: var(--ink); color: var(--on-dark); }
-.cover--peach { background: var(--cover-peach); color: var(--ink); }
-.cover__brand { font-size: 5px; font-weight: 700; letter-spacing: 0.14em; }
-.cover__title { font-family: var(--font-serif); font-size: 10px; font-weight: 600; line-height: 1.1; }
+.cover picture { display: block; height: 100%; }
+.cover img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+/* Spine highlight and a hairline edge so the flat render reads as a bound book */
+.cover::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; border-radius: inherit;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0, rgba(255, 255, 255, 0) 2px, rgba(31, 23, 18, 0.10) 3px, rgba(31, 23, 18, 0) 8px);
+  box-shadow: inset 0 0 0 1px rgba(31, 23, 18, 0.06);
+}
 .guide__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 12px; align-self: end; }
 .guide__head h3 { font-family: var(--font-sans); font-size: 1.25rem; font-weight: 700; line-height: 1.25; color: var(--ink); }
 .guide__value { font-weight: 700; font-size: 1rem; color: var(--orange-text); }
@@ -897,9 +898,8 @@ html[data-programs="method"] .programs { margin-top: 40px; } /* gap below the fe
   .guides { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 28px; }
   .guide { display: flex; flex-direction: column; align-items: stretch; gap: 16px; }
   .guide__tile { height: 220px; border-radius: 20px; }
-  .cover { width: 130px; height: 172px; padding: 16px; border-radius: 4px 10px 10px 4px; box-shadow: 10px 12px 24px rgba(31, 23, 18, 0.18); }
-  .cover__brand { font-size: 9px; }
-  .cover__title { font-size: 17px; }
+  .cover { width: 130px; height: 172px; border-radius: 4px 10px 10px 4px; box-shadow: 0 1px 3px rgba(31, 23, 18, 0.10), 10px 12px 24px rgba(31, 23, 18, 0.22); }
+  .cover::before { background: linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0, rgba(255, 255, 255, 0) 3px, rgba(31, 23, 18, 0.10) 4px, rgba(31, 23, 18, 0) 12px); }
   .guide__head { align-self: stretch; flex-wrap: nowrap; }
   .guide__head h3 { font-size: 1.3125rem; }
 }
