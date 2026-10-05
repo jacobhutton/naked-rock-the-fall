@@ -241,7 +241,6 @@
       mins: el.querySelector('[data-unit="mins"]'),
       secs: el.querySelector('[data-unit="secs"]'),
     }));
-    if (!clocks.length) return;
     const end = new Date(CONFIG.deadline).getTime();
     const pad = (n) => String(n).padStart(2, '0');
     const set = (node, value) => { if (node && node.textContent !== value) node.textContent = value; };

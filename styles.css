@@ -140,7 +140,8 @@ strong { font-weight: 700; color: var(--ink); }
    last-day copy stays invisible until main.js has swapped it (.is-closed-ready). */
 html.is-closed { --bar-h: 0px; }
 html.is-closed [data-closed-hide] { display: none !important; }
-html.is-closed:not(.is-closed-ready) [data-closed-text] { visibility: hidden; }
+html.is-closed:not(.is-closed-ready) [data-closed-text] { animation: closed-text-failsafe 0s linear 3s both; }
+@keyframes closed-text-failsafe { from { visibility: hidden; } to { visibility: visible; } } /* shows anyway after 3s if main.js never swaps it */
 
 /* Programs section variants. html[data-programs] is set by the inline script in <head>
    (absent = no JS = simple). main.js also removes the other variant's nodes at boot. */
@@ -433,15 +434,19 @@ mark.ph-mark { background: #FFE58A; color: #1F1712; border-radius: 4px; padding:
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+.lastday__clock [data-unit], .sticky-cta__note [data-unit] { display: inline-block; min-width: 2ch; text-align: center; }
 @media (min-width: 768px) {
   .lastday { position: sticky; top: 0; z-index: 51; height: var(--bar-h); min-height: 0; padding-block: 0; font-size: 1rem; }
   .lastday__long { display: inline; }
   .lastday__short { display: none; }
+  /* Only where the bar is the nav's previous sibling (index.html). rules.html and 404.html
+     share this stylesheet and the nav, but have no bar. */
+  .lastday + .nav { top: var(--bar-h); }
 }
 
 .nav {
   position: sticky;
-  top: var(--bar-h); /* sits under the last-day bar while that is sticky (768px and up); 0 otherwise */
+  top: 0;
   z-index: 50;
   background: var(--bg);
   border-bottom: 1px solid var(--border-soft);
