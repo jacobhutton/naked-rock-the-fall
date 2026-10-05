@@ -57,6 +57,8 @@ Everything else still to fill is `[bracketed]` in `index.html`. Search for `[` o
 
 Automatic at the deadline: the countdown becomes "Enrollment is closed", the $50 button is replaced with a closed notice, and the $149 yearly card stays live with the prize line removed. The replacement copy is in `data-closed-text` attributes in `index.html`.
 
+The last-day copy added on Oct 5 (the orange bar above the nav, "Last day to join", "closes tonight", the countdown line on the sticky mobile button) goes away the same way: each swapped line carries its closed-state text in `data-closed-text`, and the bar and sticky note are `data-closed-hide`. The inline script in `<head>` also applies the closed state before first paint once the deadline has passed (it repeats `CONFIG.deadline`, so change both together), which keeps that copy from flashing on a closed page.
+
 ## Images
 
 Current images are low-res crops from the design. To swap in originals: drop them in `images/originals/` (not deployed) and re-export as WebP + JPG at the same filenames. Hero wants ~1200px wide, before/afters ~800px wide. Add an `images/og.jpg` at 1200x630 for link previews.

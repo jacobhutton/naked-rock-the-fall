@@ -99,10 +99,11 @@
   --gutter: 20px;
   --section-pad: clamp(4rem, 2.89rem + 4.57vw, 7rem);       /* 64 → 112 */
   --nav-h: 64px;
+  --bar-h: 0px;   /* last-day bar: only sticky (and so only offsetting anchors) from 768px */
   --content: 1160px;
 }
 @media (min-width: 768px) {
-  :root { --gutter: 40px; --nav-h: 76px; }
+  :root { --gutter: 40px; --nav-h: 76px; --bar-h: 40px; }
 }
 @media (min-width: 1200px) {
   :root { --gutter: 56px; --nav-h: 84px; }
@@ -131,8 +132,15 @@ img { height: auto; }
 a { color: var(--orange-text); }
 a:hover { color: var(--ink); }
 strong { font-weight: 700; color: var(--ink); }
-[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
+[id] { scroll-margin-top: calc(var(--nav-h) + var(--bar-h) + 8px); }
 [hidden] { display: none !important; }
+
+/* Closed state. main.js adds .is-closed at the deadline. When the page loads after the deadline
+   the inline script in <head> adds it before first paint, so the last-day bar never shows and the
+   last-day copy stays invisible until main.js has swapped it (.is-closed-ready). */
+html.is-closed { --bar-h: 0px; }
+html.is-closed [data-closed-hide] { display: none !important; }
+html.is-closed:not(.is-closed-ready) [data-closed-text] { visibility: hidden; }
 
 /* Programs section variants. html[data-programs] is set by the inline script in <head>
    (absent = no JS = simple). main.js also removes the other variant's nodes at boot. */
@@ -398,9 +406,42 @@ mark.ph-mark { background: #FFE58A; color: #1F1712; border-radius: 4px; padding:
 /* ==========================================================================
    NAV
    ========================================================================== */
+/* Last-day bar above the nav. Scrolls away on phones (the sticky bottom button carries the
+   deadline there); sticks above the nav from 768px. Hidden by the closed state. */
+.lastday {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 6px var(--gutter);
+  background: var(--orange);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+}
+.lastday:hover { background: var(--orange-hover); color: var(--white); }
+.lastday:focus-visible { outline-color: var(--white); outline-offset: -4px; }
+.lastday__long { display: none; }
+.lastday__clock {
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(31, 23, 18, 0.22);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+@media (min-width: 768px) {
+  .lastday { position: sticky; top: 0; z-index: 51; height: var(--bar-h); min-height: 0; padding-block: 0; font-size: 1rem; }
+  .lastday__long { display: inline; }
+  .lastday__short { display: none; }
+}
+
 .nav {
   position: sticky;
-  top: 0;
+  top: var(--bar-h); /* sits under the last-day bar while that is sticky (768px and up); 0 otherwise */
   z-index: 50;
   background: var(--bg);
   border-bottom: 1px solid var(--border-soft);
@@ -1349,6 +1390,11 @@ html[data-programs="method"] .programs { margin-top: 40px; } /* gap below the fe
   transition: transform 0.25s ease, visibility 0s;
 }
 .sticky-cta .btn { min-height: 52px; }
+.sticky-cta__note { margin-bottom: 6px; text-align: center; font-size: 0.8125rem; font-weight: 700; color: var(--orange-text); font-variant-numeric: tabular-nums; }
+/* No transitions inside the note: the reduced-motion rule below gives every element a 0.01ms
+   transition, and the bar's inherited visibility change would then reach the nested clock
+   spans a few frames late (blank digits). */
+.sticky-cta__note, .sticky-cta__note * { transition: none !important; }
 @media (min-width: 768px) { .sticky-cta { display: none; } }
 
 /* ==========================================================================

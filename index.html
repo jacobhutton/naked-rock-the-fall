@@ -43,9 +43,16 @@
       } catch (e) {}
       try { sessionStorage.setItem('rtf_programs', v); } catch (e) {}
       document.documentElement.setAttribute('data-programs', v);
+      // Closed state before first paint, so the last-day bar and copy never flash once the
+      // deadline has passed. Same deadline as CONFIG.deadline in main.js: keep the two in sync.
+      try {
+        if (Date.now() > Date.parse('2026-10-05T23:59:59-06:00') || /[?&]preview=closed(&|$)/.test(location.search)) {
+          document.documentElement.classList.add('is-closed');
+        }
+      } catch (e) {}
     })();
   </script>
-  <link rel="stylesheet" href="styles.css?v=20260925">
+  <link rel="stylesheet" href="styles.css?v=20261005">
 
   <!-- ======================================================================
        TRACKING
@@ -55,7 +62,7 @@
        Never fire Purchase on this page. It belongs on the checkout confirmation.
        ====================================================================== -->
 
-  <script src="main.js?v=20260924" defer></script>
+  <script src="main.js?v=20261005" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -82,6 +89,14 @@
 </svg>
 
 <!-- ============================ NAV ============================ -->
+<!-- Last-day bar (Oct 5). Hidden by the closed state via data-closed-hide; the clock is one of the
+     [data-countdown] elements driven by initCountdown in main.js. -->
+<a class="lastday" href="#pricing" data-closed-hide>
+  <span class="lastday__long">Last day to join. Enrollment closes tonight at 11:59 PM MT</span>
+  <span class="lastday__short">Last day to join. Closes in</span>
+  <span class="lastday__clock" data-countdown role="timer" aria-live="off"><span data-unit="hours">--</span>:<span data-unit="mins">--</span>:<span data-unit="secs">--</span></span>
+</a>
+
 <header class="nav">
   <div class="wrap nav__inner">
     <!-- Replace with the logo file if provided -->
@@ -105,7 +120,7 @@
           </a>
           <p class="date-badge">
             <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg>
-            Starts October 5
+            <span data-closed-text="Starts October 5">Last day to join</span>
           </p>
         </div>
         <!-- Rating line carried over from the Summer Showdown page (same claim, same wording). -->
@@ -132,22 +147,23 @@
 
   <!-- ============================ MARQUEE ============================ -->
   <div class="marquee">
-    <!-- Two identical groups make the loop seamless. Only the first three items are read by screen readers. -->
+    <!-- Two identical groups make the loop seamless. Only the first three items are read by screen readers.
+         Last-day copy; data-closed-text holds what each item reads after enrollment closes. -->
     <ul class="marquee__group" role="list">
-      <li>5 winners, $2,000 each</li><li aria-hidden="true">✦</li>
-      <li>Starts October 5</li><li aria-hidden="true">✦</li>
-      <li>Train with any program</li><li aria-hidden="true">✦</li>
-      <li aria-hidden="true">5 winners, $2,000 each</li><li aria-hidden="true">✦</li>
-      <li aria-hidden="true">Starts October 5</li><li aria-hidden="true">✦</li>
-      <li aria-hidden="true">Train with any program</li><li aria-hidden="true">✦</li>
+      <li data-closed-text="Yearly membership still open">5 winners, $2,000 each</li><li aria-hidden="true">✦</li>
+      <li data-closed-text="Enrollment is closed">Last day to join</li><li aria-hidden="true">✦</li>
+      <li data-closed-text="Train with any program">Enrollment closes tonight</li><li aria-hidden="true">✦</li>
+      <li aria-hidden="true" data-closed-text="Yearly membership still open">5 winners, $2,000 each</li><li aria-hidden="true">✦</li>
+      <li aria-hidden="true" data-closed-text="Enrollment is closed">Last day to join</li><li aria-hidden="true">✦</li>
+      <li aria-hidden="true" data-closed-text="Train with any program">Enrollment closes tonight</li><li aria-hidden="true">✦</li>
     </ul>
     <ul class="marquee__group" aria-hidden="true">
-      <li>5 winners, $2,000 each</li><li>✦</li>
-      <li>Starts October 5</li><li>✦</li>
-      <li>Train with any program</li><li>✦</li>
-      <li>5 winners, $2,000 each</li><li>✦</li>
-      <li>Starts October 5</li><li>✦</li>
-      <li>Train with any program</li><li>✦</li>
+      <li data-closed-text="Yearly membership still open">5 winners, $2,000 each</li><li>✦</li>
+      <li data-closed-text="Enrollment is closed">Last day to join</li><li>✦</li>
+      <li data-closed-text="Train with any program">Enrollment closes tonight</li><li>✦</li>
+      <li data-closed-text="Yearly membership still open">5 winners, $2,000 each</li><li>✦</li>
+      <li data-closed-text="Enrollment is closed">Last day to join</li><li>✦</li>
+      <li data-closed-text="Train with any program">Enrollment closes tonight</li><li>✦</li>
     </ul>
   </div>
 
@@ -571,11 +587,11 @@
         <li>
           <span class="how__num" aria-hidden="true">02</span>
           <h3>Pick your program</h3>
-          <p>Start Rock the Fall or choose any program. Use the time before kickoff to get comfortable.</p>
+          <p data-closed-text="Start Rock the Fall or choose any program. Use the time before kickoff to get comfortable.">Start Rock the Fall or choose any program. You can train today.</p>
         </li>
         <li>
           <span class="how__num" aria-hidden="true">03</span>
-          <h3>Kick off October 5</h3>
+          <h3 data-closed-text="Kick off October 5">Kick off today</h3>
           <p>Take your starting photos and begin your eight weeks.</p>
         </li>
       </ol>
@@ -634,9 +650,9 @@
   <section class="section section--alt pricing" id="pricing" aria-labelledby="pricing-title">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Pricing</p>
+        <p class="eyebrow" data-closed-text="Pricing">Last day to join</p>
         <h2 class="h2" id="pricing-title">Ready to <em>commit?</em></h2>
-        <p class="lede" data-closed-text="Rock the Fall enrollment is closed. Yearly membership is still open.">Enrollment closes October 5.</p>
+        <p class="lede" data-closed-text="Rock the Fall enrollment is closed. Yearly membership is still open.">Enrollment closes tonight at 11:59 PM Mountain Time.</p>
       </div>
 
       <!-- Live countdown. Deadline lives in CONFIG.deadline (main.js). -->
@@ -761,11 +777,11 @@
         <div class="faq__col">
           <details class="faq__item">
             <summary>When does it start?<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg></summary>
-            <p>The challenge starts October 5. You'll get app access as soon as you join, so you can settle in before kickoff.</p>
+            <p data-closed-text="The challenge starts October 5. You'll get app access as soon as you join, so you can settle in before kickoff.">It starts today, October 5. You get app access the moment you join, so if you join today you're starting with everyone else.</p>
           </details>
           <details class="faq__item">
             <summary>When does enrollment close?<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg></summary>
-            <p>October 5.</p>
+            <p data-closed-text="October 5.">Tonight, October 5, at 11:59 PM Mountain Time. That's 10:59 PM Pacific and 1:59 AM Eastern.</p>
           </details>
           <details class="faq__item">
             <summary>What if I miss a day?<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg></summary>
@@ -789,10 +805,10 @@
     <div class="wrap">
       <div class="final-cta">
         <h2 class="final-cta__title" id="final-title">Fall doesn't wait.<br><em>Neither should you.</em></h2>
-        <p class="lede" data-closed-text="A clear plan and a community in your corner, all year long.">A clear plan, a community in your corner, and $2,000 on the line. Enrollment closes October 5.</p>
+        <p class="lede" data-closed-text="A clear plan and a community in your corner, all year long.">A clear plan, a community in your corner, and $2,000 on the line. Enrollment closes tonight at 11:59 PM Mountain.</p>
         <div class="final-cta__actions">
           <a class="btn btn--dark" href="#pricing">Join the Challenge</a>
-          <p class="date-badge">Starts October 5</p>
+          <p class="date-badge" data-closed-text="Starts October 5">Last day to join</p>
         </div>
       </div>
     </div>
@@ -813,6 +829,7 @@
 
 <!-- Sticky mobile CTA (under 768px, after the hero, hidden while pricing is on screen) -->
 <div class="sticky-cta" data-sticky-cta>
+  <p class="sticky-cta__note" data-closed-hide>Closes tonight · <span data-countdown role="timer" aria-live="off"><span data-unit="hours">--</span>:<span data-unit="mins">--</span>:<span data-unit="secs">--</span></span> left</p>
   <a class="btn" href="#pricing">Join the Challenge</a>
 </div>
 

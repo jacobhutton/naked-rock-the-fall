@@ -20,6 +20,7 @@
     },
 
     // Enrollment close: 11:59 PM Mountain Time, October 5, 2026 (MDT = UTC-6).
+    // The inline script in index.html <head> repeats this date for the pre-paint closed state.
     deadline: '2026-10-05T23:59:59-06:00',
 
     links: {
@@ -232,39 +233,42 @@
      Countdown + closed state.  Preview the closed state with ?preview=closed
      ------------------------------------------------------------------------ */
   const initCountdown = () => {
-    const el = document.querySelector('[data-countdown]');
-    if (!el) return;
-    const end = new Date(CONFIG.deadline).getTime();
-    const units = {
+    // Every [data-countdown] on the page: the pricing tiles, the last-day bar, the sticky mobile note.
+    const clocks = $$('[data-countdown]').map((el) => ({
+      el,
       days: el.querySelector('[data-unit="days"]'),
       hours: el.querySelector('[data-unit="hours"]'),
       mins: el.querySelector('[data-unit="mins"]'),
       secs: el.querySelector('[data-unit="secs"]'),
-    };
+    }));
+    if (!clocks.length) return;
+    const end = new Date(CONFIG.deadline).getTime();
     const pad = (n) => String(n).padStart(2, '0');
+    const set = (node, value) => { if (node && node.textContent !== value) node.textContent = value; };
     let timer = null;
 
     const close = () => {
       if (timer) window.clearInterval(timer);
       document.documentElement.classList.add('is-closed');
-      el.hidden = true;
+      clocks.forEach((clock) => { clock.el.hidden = true; });
       $$('[data-closed-hide]').forEach((node) => { node.hidden = true; });
       $$('[data-closed-show]').forEach((node) => { node.hidden = false; });
       $$('[data-closed-text]').forEach((node) => { node.textContent = node.dataset.closedText; });
+      // styles.css keeps [data-closed-text] invisible between the pre-paint .is-closed (head script)
+      // and this point, so nobody sees last-day copy after the deadline.
+      document.documentElement.classList.add('is-closed-ready');
     };
 
     const tick = () => {
       const left = end - Date.now();
       if (!(left > 0)) { close(); return; }
       const s = Math.floor(left / 1000);
-      const next = {
-        days: pad(Math.floor(s / 86400)),
-        hours: pad(Math.floor((s % 86400) / 3600)),
-        mins: pad(Math.floor((s % 3600) / 60)),
-        secs: pad(s % 60),
-      };
-      Object.keys(next).forEach((key) => {
-        if (units[key] && units[key].textContent !== next[key]) units[key].textContent = next[key];
+      clocks.forEach((clock) => {
+        set(clock.days, pad(Math.floor(s / 86400)));
+        // A clock without a days tile shows total hours.
+        set(clock.hours, pad(clock.days ? Math.floor((s % 86400) / 3600) : Math.floor(s / 3600)));
+        set(clock.mins, pad(Math.floor((s % 3600) / 60)));
+        set(clock.secs, pad(s % 60));
       });
     };
 
